@@ -1,6 +1,7 @@
 const fs= require('fs');
+const http= require('http');
 
-//BLocking synchronous way;
+// BLocking synchronous way;
 const textIn1= fs.readFileSync('./1-node-farm/starter/txt/input.txt', 'utf-8');
 console.log(textIn1);
 
@@ -9,7 +10,7 @@ fs.writeFileSync('./1-node-farm/starter/txt/start.txt',textOut1);
 console.log('File written');
 
 
-//Non-BLocking Asynchronous way;
+// Non-BLocking Asynchronous way;
 
 fs.readFile(`./1-node-farm/starter/txt/starttt.txt`,'utf-8',(err, data1) => {
     if(err) return console.log("ERROR!**********")
@@ -26,3 +27,13 @@ fs.readFile(`./1-node-farm/starter/txt/starttt.txt`,'utf-8',(err, data1) => {
 });
 });
 console.log('Read Successfully');
+
+//Creating a SERVER
+const server=http.createServer((req, res) => {
+    console.log(req);
+    res.end('Hello from the server');
+})
+
+server.listen(8000,'127.0.0.1',()=>{
+    console.log('Listening to requests on port 8000');
+})
