@@ -11,7 +11,7 @@ console.log('File written');
 
 //Non-BLocking Asynchronous way;
 
-fs.readFile(`./1-node-farm/starter/txt/starttttttt.txt`,'utf-8',(err, data1) => {
+fs.readFile(`./1-node-farm/starter/txt/starttt.txt`,'utf-8',(err, data1) => {
     if(err) return console.log("ERROR!**********")
     fs.readFile(`./1-node-farm/starter/txt/${data1}.txt`,'utf-8',(err, data2) => {
         console.log("Find the data:",data2);
