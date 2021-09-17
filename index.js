@@ -36,6 +36,12 @@ const server = http.createServer((req, res) => {
         res.end('THis is the overview')
     }else if (pathName === '/product'){
         res.end('This is the product')
+    }else{
+        res.writeHead(404,{
+            'Content-type': 'text/html',
+            'my-own-header': 'hello world'
+        });
+        res.end('<h2>Page Not Found</h2>')
     }
 })
 
