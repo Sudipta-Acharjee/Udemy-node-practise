@@ -1,6 +1,6 @@
-const fs= require('fs');
-const http= require('http');
-const url= require('url');
+const fs = require('fs');
+const http = require('http');
+const url = require('url');
 
 // BLocking synchronous way;
 // const textIn1= fs.readFileSync('./1-node-farm/starter/txt/input.txt', 'utf-8');
@@ -24,17 +24,21 @@ const url= require('url');
 //             })
 //         }
 //         )
-        
+
 // });
 // });
 // console.log('Read Successfully');
 
 //Creating a SERVER
-const server=http.createServer((req, res) => {
-    console.log(req.url);
-    res.end('Hello from the server');
+const server = http.createServer((req, res) => {
+    const pathName = req.url;
+    if (pathName==='/' || pathName === '/overview') {
+        res.end('THis is the overview')
+    }else if (pathName === '/product'){
+        res.end('This is the product')
+    }
 })
 
-server.listen(8000,'127.0.0.1',()=>{
+server.listen(8000, '127.0.0.1', () => {
     console.log('Listening to requests on port 8000');
 })
