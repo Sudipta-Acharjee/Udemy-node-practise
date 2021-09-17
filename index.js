@@ -32,12 +32,19 @@ const url = require('url');
 //Creating a SERVER
 const server = http.createServer((req, res) => {
     const pathName = req.url;
-    if (pathName==='/' || pathName === '/overview') {
+    if (pathName === '/' || pathName === '/overview') {
         res.end('THis is the overview')
-    }else if (pathName === '/product'){
+    } else if (pathName === '/product') {
         res.end('This is the product')
-    }else{
-        res.writeHead(404,{
+    } else if (pathName === '/api') {
+        fs.readFile(`./1-node-farm/starter/dev-data/data.json`, 'utf-8', (err, data) => {
+            const productData = JSON.parse(data);
+            res.writeHead(200, { 'Content-Type': 'application/json'})
+            res.end(data)
+        })
+        
+    } else {
+        res.writeHead(404, {
             'Content-type': 'text/html',
             'my-own-header': 'hello world'
         });
