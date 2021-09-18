@@ -1,6 +1,7 @@
 const fs = require('fs');
 const http = require('http');
 const url = require('url');
+const replaceTemplate = require('./1-node-farm/modules/replaceTemplate');
 
 // BLocking synchronous way;
 // const textIn1= fs.readFileSync('./1-node-farm/starter/txt/input.txt', 'utf-8');
@@ -36,19 +37,6 @@ const tempCard = fs.readFileSync(`./1-node-farm/starter/templates/template-card.
 const teamProduct = fs.readFileSync(`./1-node-farm/starter/templates/template-product.html`, 'utf-8')
 const data = fs.readFileSync(`./1-node-farm/starter/dev-data/data.json`, 'utf-8')
 const dataObj = JSON.parse(data);
-
-const replaceTemplate = (temp, product) => {
-    let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
-    output = output.replace(/{%IMAGE%}/g, product.image);
-    output = output.replace(/{%PRICE%}/g, product.price);
-    output = output.replace(/{%FROM%}/g, product.from);
-    output = output.replace(/{%NUTRIENTS%}/g, product.nutrients);
-    output = output.replace(/{%QUANTITY%}/g, product.quantity);
-    output = output.replace(/{%DESCRIPTION%}/g, product.description);
-    output = output.replace(/{%ID%}/g, product.id);
-    if (!product.organic) output = output.replace(/{%NOT_ORGANIC%}/g, 'not-organic');
-    return output;
-}
 
 const server = http.createServer((req, res) => {
     const { query, pathname } = (url.parse(req.url, true));
