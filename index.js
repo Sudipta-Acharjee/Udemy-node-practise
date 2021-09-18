@@ -2,7 +2,7 @@ const fs = require('fs');
 const http = require('http');
 const url = require('url');
 
-const slugify = equire('slugify');
+const slugify = require('slugify');
 
 const replaceTemplate = require('./1-node-farm/modules/replaceTemplate');
 
