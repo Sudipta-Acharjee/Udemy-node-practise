@@ -31,6 +31,12 @@ const url = require('url');
 
 //Creating a SERVER
 
+const tempOverview = fs.readFileSync(`./1-node-farm/starter/templates/template-overview.html`, 'utf-8')
+const tempCard = fs.readFileSync(`./1-node-farm/starter/templates/template-card.html`, 'utf-8')
+const teamProduct = fs.readFileSync(`./1-node-farm/starter/templates/template-product.html`, 'utf-8')
+const data = fs.readFileSync(`./1-node-farm/starter/dev-data/data.json`, 'utf-8')
+const dataObj= JSON.parse(data);
+
 const replaceTemplate = (temp, product)=>{
     let output = temp.replace(/{%PRODUCTNAME%}/g, product.productName);
     output = output.replace(/{%IMAGE%}/g, product.image);
@@ -41,12 +47,8 @@ const replaceTemplate = (temp, product)=>{
     output = output.replace(/{%DESCRIPTION%}/g, product.description);
     output = output.replace(/{%ID%}/g, product.id);
     if(!product.organic) output = output.replace(/{%NOT_ORGANIC%}/g, 'not-organic');
+    return output;
 }
-const tempOverview = fs.readFileSync(`./1-node-farm/starter/templates/template-overview.html`, 'utf-8')
-const tempCard = fs.readFileSync(`./1-node-farm/starter/templates/template-card.html`, 'utf-8')
-const teamProduct = fs.readFileSync(`./1-node-farm/starter/templates/template-product.html`, 'utf-8')
-const data = fs.readFileSync(`./1-node-farm/starter/dev-data/data.json`, 'utf-8')
-const dataObj= JSON.parse(data);
 
 const server = http.createServer((req, res) => {
     const pathName = req.url;
