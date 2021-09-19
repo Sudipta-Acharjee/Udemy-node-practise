@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/Sudipta-Acharjee/Udemy-node-practise#readme",
   "dependencies": {
+    "express": "^4.17.1",
     "slugify": "^1.6.0"
   },
   "devDependencies": {
