@@ -63,11 +63,11 @@ const server = http.createServer((req, res) => {
         res.writeHead(200, { 'Content-type': 'application/json' });
         res.end(data);
 
-        //NOT FOUND
+        //NOT FOUND;
     } else {
         res.writeHead(404, {
             'Content-type': 'text/html',
-            'my-own-header': 'hello world'
+            'my-own-header': 'hello world!'
         });
         res.end('<h2>Page Not Found</h2>')
     }
